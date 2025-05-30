@@ -6,14 +6,22 @@
 }
 
 :root {
-  --primary-color: #2b2f37;
-  --secondary-color: #21202c;
-  --primary-font-color: white;
+  --primary-color: #ffffff; /* Light default */
+  --secondary-color: #e6e6e6;
+  --primary-font-color: #000000;
   --secondary-font-color: #828fa3;
+  --primary-box-shadow: 0px 8px 18px 0px rgba(176, 176, 188, 0.56);
+  
+}
+.dark-theme {
+  --primary-color: #2b2c37;
+  --secondary-color: #21202c;
+  --primary-font-color: #ffffff;
   --primary-box-shadow: 0px 8px 18px 0px rgba(45, 45, 60, 0.56);
 }
 
 .light-theme {
+  /* Same as :root, or tweak as needed */
   --primary-color: #ffffff;
   --secondary-color: #e6e6e6;
   --primary-font-color: #000000;
@@ -22,7 +30,7 @@
 }
 
 body {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   display: flex;
   min-height: 100vh;
   flex-direction: row;
@@ -41,7 +49,7 @@ body {
   flex: 1;
   flex-direction: column;
   /* border: 2px solid green; */
-  overflow-x: hidden
+  overflow-x: hidden;
 }
 
 .side-bar {
@@ -50,12 +58,12 @@ body {
   /* border: 5px solid rgb(0, 0, 0); */
   border-right: 0.1px solid #979797;
   /* flex: 0.8; */
-  display: none;
+  display: block;
   flex-direction: column;
   gap: 50px;
   /* padding-left: 50px; */
   padding-right: 20px;
-  height: 100vh;
+  /*i have removed the height so that it could take the remaining space thats left*/
   /* overflow-x: hidden; */
   margin-right: 0;
   /* padding: 0 12px 0 26px; */
@@ -82,7 +90,7 @@ body {
   height: 40px;
   background-color: transparent;
   border: 0;
-  color: #219C90;
+  color: #219c90;
   font-size: 16px;
   cursor: pointer;
   overflow: hidden;
@@ -94,7 +102,6 @@ body {
   filter: invert(21%) sepia(95%) saturate(5663%) hue-rotate(150deg)
     brightness(88%) contrast(88%);
 }
-
 
 .board-btn {
   font-family: inherit;
@@ -117,7 +124,7 @@ body {
 }
 
 .active {
-  background-color: #219C90;
+  background-color: #219c90;
   color: white;
   font-weight: 500;
   padding: 28px 12px 28px 50px;
@@ -139,15 +146,15 @@ body {
 }
 
 #todo-dot {
-  background-color: #D83F31;
+  background-color: #d83f31;
 }
 
 #doing-dot {
-  background-color: #E9B824;
+  background-color: #e9b824;
 }
 
 #done-dot {
-  background-color: #219C90;
+  background-color: #219c90;
 }
 
 h4 {
@@ -171,6 +178,10 @@ h4 {
   margin-left: 50px;
 }
 
+.hidden {
+  display: none;
+}
+
 #show-side-bar-btn {
   border: none;
   width: 50px;
@@ -179,7 +190,7 @@ h4 {
   position: absolute;
   bottom: 45px;
   border-radius: 0 20px 20px 0;
-  background-color: #219C90;
+  background-color: #219c90;
   display: none;
   cursor: pointer;
 }
@@ -230,7 +241,7 @@ header {
 }
 
 #add-new-task-btn {
-  background-color: #219C90;
+  background-color: #219c90;
   color: white;
   border-radius: 30px;
   border: 0;
@@ -276,11 +287,11 @@ header {
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  padding-left: 15px;
+  padding: 10px;
   width: 100%;
   background-color: var(--primary-color);
   color: var(--primary-font-color);
-  height: 90px;
+  height: auto;
   border-radius: 12px;
   box-shadow: var(--primary-box-shadow);
   cursor: pointer;
@@ -303,13 +314,17 @@ header {
 /* Edit task */
 
 #create-task-btn,
-#cancel-add-task-btn {
+#cancel-add-task-btn,
+#delete-task-button {
+  margin-left: 4px;
+  padding: 3px;
   margin-top: 15px;
   flex: 1; /* This will make both buttons flex equally */
 }
 
 .button-group {
   display: flex;
+  margin-left: 5px;
   justify-content: space-between; /* This will space out the buttons evenly */
 }
 
@@ -381,13 +396,11 @@ header {
   padding: 10px 0; /* You can adjust the top and bottom padding as needed */
 }
 
-
 .edit-task-div.button-group .editBtns {
   flex: 1; /* flex-grow: 1, flex-shrink: 1, flex-basis: 0% */
   min-height: 60px;
   margin: 0 4px; /* Adjust as needed for spacing between buttons */
 }
-
 
 .edit-task-modal-window {
   position: fixed;
@@ -472,7 +485,7 @@ header {
 }
 
 #save-task-changes-btn {
-  background-color: #219C90;
+  background-color: #219c90;
   color: white;
   border-radius: 30px;
   border: 0;
@@ -482,7 +495,7 @@ header {
 }
 
 #cancel-edit-btn {
-  background-color:#E9B824;
+  background-color: #e9b824;
   color: white;
   border-radius: 30px;
   border: 0;
@@ -492,7 +505,7 @@ header {
 }
 
 #delete-task-btn {
-  background-color:#ea5555;
+  background-color: #ea5555;
   color: white;
   border-radius: 30px;
   border: 0;
@@ -568,14 +581,13 @@ h2 {
 
 .modal-window {
   /* border: 5px solid red; */
-  display: flex;
+  display: none;
   flex-direction: column;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px;
-  display: flex;
+  max-width: 800px;
   flex-direction: column;
   padding: 30px;
   gap: 20px;
@@ -583,7 +595,7 @@ h2 {
   font-weight: 500;
   font-size: 14px;
   border-radius: 10px;
-  display: none;
+
   z-index: 3;
   transition: all 0.3s ease-in;
 }
@@ -654,7 +666,7 @@ input#edit-task-title-input.task-title-input {
 }
 
 #edit-select-status {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 14px;
   height: 40px;
   padding: 10px;
@@ -674,7 +686,7 @@ input#edit-task-title-input.task-title-input {
 }
 
 .submit-btn {
-  background-color: #219C90;
+  background-color: #219c90;
   color: white;
   border-radius: 30px;
   border: 0;
@@ -698,7 +710,7 @@ input#edit-task-title-input.task-title-input {
 }
 
 textarea {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 16px;
   color: black;
   height: 90px;
@@ -735,11 +747,15 @@ input {
 }
 
 #icon-light {
+  background-color: #fff;
+  color: #000;
   margin-left: 15px;
   width: 22px;
 }
 
 #icon-dark {
+  background-color: #121212;
+  color: #fff;
   margin-right: 10px;
   width: 22px;
 }
@@ -997,19 +1013,17 @@ input:checked + #label-checkbox-theme:after {
   }
 
   .header-board-name {
-  font-family: 'IBM Plex Sans', sans-serif;
-}
+    font-family: "IBM Plex Sans", sans-serif;
+  }
 
-.header-board-name {
-  font-family: 'IBM Plex Sans', sans-serif;
-}
-
+  .header-board-name {
+    font-family: "IBM Plex Sans", sans-serif;
+  }
 
   #deleteBoardBtn {
     font-size: 12px;
     font-weight: 500;
   }
-
 
   #header-board-name {
     font-size: 16px;
@@ -1045,9 +1059,6 @@ input:checked + #label-checkbox-theme:after {
     width: 95%;
   }
 }
-
-
-
 
 @media screen and (max-width: 480px) {
   .side-bar.show-sidebar {
@@ -1196,6 +1207,7 @@ input:checked + #label-checkbox-theme:after {
     margin: 0;
     width: 100%;
     box-sizing: border-box;
+    border: 2px solid yellow;
     /* border: 2px solid yellow; */
   }
 
@@ -1204,12 +1216,14 @@ input:checked + #label-checkbox-theme:after {
     flex-direction: column;
     margin: 0;
     padding: 0;
+    border: 2px solid red;
     /* border: 2px solid red; */
   }
 
   #header {
     top: 0;
     left: 0;
+    border: 2px solid white;
     /* border: 2px solid white; */
     height: 80px;
     margin: 0;
@@ -1222,6 +1236,7 @@ input:checked + #label-checkbox-theme:after {
     top: 17px;
     display: flex;
     right: 10px;
+    border: 2px solid red;
     /* border: 2px solid red; */
     padding: 0;
   }
@@ -1238,6 +1253,7 @@ input:checked + #label-checkbox-theme:after {
 
   #editBoardDiv {
     margin: 0;
+    border: 2px solid red;
     /* border: 2px solid red; */
     top: 85px;
     right: 10px;
@@ -1268,14 +1284,18 @@ input:checked + #label-checkbox-theme:after {
   }
 
   .column-div {
+    padding: 18px;
     /* padding: 18px; */
     width: 100%;
+    border: 2px solid rgb (93, 0, 255);
+    box-sizing: border-box;
     /* border: 2px solid rgb(93, 0, 255); */
     /* box-sizing: border-box; */
   }
 
   .task-div {
     height: 70px;
+    box-sizing: border-box;
     /* box-sizing: border-box; */
   }
 
@@ -1341,9 +1361,8 @@ input:checked + #label-checkbox-theme:after {
   }
 }
 
-
-
 /* Laptops and Desktops */
+
 @media screen and (min-width: 1025px) {
   body {
     font-size: 16px;
